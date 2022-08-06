@@ -19,6 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
+#ifdef RGBLIGHT_ENABLE
+#include "ws2812.h"
+#endif
+
 #define LAYOUT( \
     K000, K001, K002, K003, K004, \
     K100, K101, K102, K103, K104, \

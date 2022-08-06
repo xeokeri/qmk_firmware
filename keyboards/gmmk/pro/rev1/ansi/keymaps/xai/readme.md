@@ -2,8 +2,8 @@
 
 Make example for this keyboard (after setting up your build environment):
 
-    make gmmk/pro/ansi:xai
+    make gmmk/pro/rev1/ansi:xai
     
 Flashing example for this keyboard:
     
-    make gmmk/pro/ansi:xai:flash
+    make gmmk/pro/rev1/ansi:xai:flash

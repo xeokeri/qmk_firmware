@@ -16,9 +16,8 @@
 
 #pragma once
 
-#ifndef _HALCONF_H_
-#define _HALCONF_H_
-
 #define HAL_USE_SPI TRUE
+#define SPI_USE_WAIT TRUE
+#define SPI_SELECT_MODE SPI_SELECT_MODE_PAD
 
-#endif
+#include_next <halconf.h>

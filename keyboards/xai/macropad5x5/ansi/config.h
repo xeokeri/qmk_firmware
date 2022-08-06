@@ -43,3 +43,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef NKRO_ENABLE
 #define FORCE_NKRO
 #endif
+
+// https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects
+#define ENABLE_RGB_MATRIX_TYPING_HEATMAP
+#define ENABLE_RGB_MATRIX_DIGITAL_RAIN
+

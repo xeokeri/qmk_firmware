@@ -5,6 +5,9 @@ MCU = STM32F103
 BOARD = STM32_F103_STM32DUINO
 BOOTLOADER_TYPE = stm32duino
 
+# Processor Frequency
+F_CPU = 8000000
+
 # Build Options
 BOOTMAGIC_ENABLE = yes
 MOUSEKEY_ENABLE = yes

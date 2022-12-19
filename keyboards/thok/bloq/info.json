@@ -1,7 +1,8 @@
 {
-  "keyboard_name": "Thok Bloq",
+  "keyboard_name": "Bloq",
+  "manufacturer": "Thok",
+  "maintainer": "Thok",
   "url": "https://thok.design",
-  "maintainer": "THOK",
   "usb": {
     "vid": "0x2011",
     "pid": "0x0001",

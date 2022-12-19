@@ -3,6 +3,8 @@
   "url": "https://thok.design",
   "maintainer": "THOK",
   "usb": {
+    "vid": "0x2011",
+    "pid": "0x0001",
     "device_version": "0.0.1"
   },
   "layouts": {

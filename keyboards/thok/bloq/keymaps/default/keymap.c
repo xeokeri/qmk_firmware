@@ -21,11 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 enum layers {
     THOK_LAYER_0 = 0,
-    THOK_LAYER_1 = 1,
-    THOK_LAYER_2 = 2,
-    THOK_LAYER_3 = 3,
-    THOK_LAYER_4 = 4,
-    THOK_LAYER_RESET = 5
+    THOK_LAYER_1,
+    THOK_LAYER_2,
+    THOK_LAYER_3,
+    THOK_LAYER_4,
+    THOK_LAYER_R // `Reset` layer
 };
 
 
@@ -36,7 +36,6 @@ enum layers {
 #define PPASTE  LCTL(LSFT(KC_V))
 #define REDO    LCTL(LSFT(KC_Z))
 #define UNDO    LCTL(KC_Z)
-#define RGB_WHI XXXXXXX // Filler for key white toggle, see bloq.c to modify
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
@@ -45,7 +44,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [THOK_LAYER_2] = { ENCODER_CCW_CW(LCTL(KC_PMNS), LCTL(KC_PPLS)) },
     [THOK_LAYER_3] = { ENCODER_CCW_CW(RGB_HUD, RGB_HUI) },
     [THOK_LAYER_4] = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
-    [THOK_LAYER_RESET] = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
+    [THOK_LAYER_R] = { ENCODER_CCW_CW(_______, _______) }
 };
 #endif
 

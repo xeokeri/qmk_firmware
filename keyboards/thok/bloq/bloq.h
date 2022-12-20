@@ -17,8 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define ____ KC_NO
-
 #include "quantum.h"
 
 
@@ -28,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     K200, K201, K202, \
     K300, K301, K302  \
 ) { \
-    { ____, ____, K000 }, \
+    { K000 }, \
     { K100, K101, K102 }, \
     { K200, K201, K202 }, \
     { K300, K301, K302 }  \

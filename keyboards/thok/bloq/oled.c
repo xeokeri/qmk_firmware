@@ -229,7 +229,7 @@ static void render_oled_show_labels(void) {
       break;
     default:
       render_oled_idle();
-          break;
+      break;
   }
 }
 

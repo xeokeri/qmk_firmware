@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
+#include "oled.c"
 
 #include "bloq.h"
 
@@ -37,59 +38,105 @@ enum layers {
 #define REDO    LCTL(LSFT(KC_Z))
 #define UNDO    LCTL(KC_Z)
 
+
+#if defined(ENCODER_ENABLE)
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [THOK_LAYER_0] = { ENCODER_CCW_CW(KC_PGDN, KC_PGUP) },
-    [THOK_LAYER_1] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
-    [THOK_LAYER_2] = { ENCODER_CCW_CW(LCTL(KC_PMNS), LCTL(KC_PPLS)) },
-    [THOK_LAYER_3] = { ENCODER_CCW_CW(RGB_HUD, RGB_HUI) },
-    [THOK_LAYER_4] = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
-    [THOK_LAYER_R] = { ENCODER_CCW_CW(_______, _______) }
+    [THOK_LAYER_0] = { ENCODER_CCW_CW(KC_VOLD,  KC_VOLU) },
+    [THOK_LAYER_1] = { ENCODER_CCW_CW(KC_PGDN,  KC_PGUP) },
+    [THOK_LAYER_2] = { ENCODER_CCW_CW(RGB_RMOD, RGB_MOD) },
+    [THOK_LAYER_3] = { ENCODER_CCW_CW(RGB_HUD,  RGB_HUI) },
+    [THOK_LAYER_4] = { ENCODER_CCW_CW(RGB_VAD,  RGB_VAI) },
+    [THOK_LAYER_R] = { ENCODER_CCW_CW(_______,  _______) }
 };
+#else
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    uprintf("hello");
+    
+    switch (get_highest_layer(layer_state | default_layer_state)) {
+    case THOK_LAYER_0:
+        if (clockwise) {
+            tap_code(KC_VOLU);
+        } else {
+            tap_code(KC_VOLD);
+        }
+    case THOK_LAYER_1:
+        if (clockwise) {
+            tap_code(KC_PGDP);
+        } else {
+            tap_code(KC_PGUN);
+        }
+    case THOK_LAYER_2:
+        #ifdef RGBLIGHT_ENABLE
+        if (clockwise) {
+            rgblight_step();
+        } else {
+            rgblight_step_reverse();
+        }
+        #endif
+    case THOK_LAYER_3:
+        #ifdef RGBLIGHT_ENABLE
+        if (clockwise) {
+            rgblight_increase_hue();
+        } else {
+            rgblight_decrease_hue();
+        }
+        #endif
+    case THOK_LAYER_4:
+        #ifdef RGBLIGHT_ENABLE
+        if (clockwise) {
+            rgblight_increase_val();
+        } else {
+            rgblight_decrease_val();
+        }
+        #endif
+    default:
+        break;
+    }
+
+    return true;
+}
+#endif
 #endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [THOK_LAYER_0] = LAYOUT(
-                            TO(THOK_LAYER_1),
-        RGB_MOD,  KC_TRNS,  KC_TRNS,
-        KC_TRNS,  KC_UP,    KC_TRNS,
-        KC_LEFT,  KC_DOWN,  KC_RGHT
+                          TO(THOK_LAYER_1),
+        KC_VOLD,  KC_UP,   KC_VOLU,
+        KC_LEFT,  KC_MPLY, KC_RGHT,
+        KC_MPRV,  KC_DOWN, KC_MNXT
     ),
     [THOK_LAYER_1] = LAYOUT(
                             TO(THOK_LAYER_2),
-        KC_MUTE,  KC_MPLY,  KC_MSTP,
-        KC_VOLU,  KC_MPRV,  KC_MNXT,
-        KC_VOLD,  KC_TRNS,  KC_TRNS
+        XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [THOK_LAYER_2] = LAYOUT(
                             TO(THOK_LAYER_3),
-        UNDO,     REDO,     KC_DEL,
-        COPY,     CUT,      PASTE,
-        PPASTE,   KC_SPC,   KC_TRNS
+        XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [THOK_LAYER_3] = LAYOUT(
-                            TO(THOK_LAYER_4),
-        KC_TRNS,  KC_TRNS,  KC_TRNS,
-        KC_TRNS,  KC_TRNS,  KC_TRNS,
-        KC_TRNS,  KC_TRNS,  KC_TRNS
+                          TO(THOK_LAYER_4),
+        XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX
     ),
     [THOK_LAYER_4] = LAYOUT(
-                            TO(THOK_LAYER_0),
-        KC_TRNS,  KC_TRNS,  KC_TRNS,
-        KC_TRNS,MO(THOK_LAYER_RESET), KC_TRNS,
-        KC_TRNS,  KC_TRNS,  KC_TRNS
+                          TO(THOK_LAYER_0),
+        XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, MO(5),   XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX
     ),
-    [THOK_LAYER_RESET] = LAYOUT (
+    [THOK_LAYER_R] = LAYOUT (
                           QK_BOOT,
       XXXXXXX,  XXXXXXX,  XXXXXXX,
       XXXXXXX,  XXXXXXX,  XXXXXXX,
       XXXXXXX,  XXXXXXX,  XXXXXXX
     )
 };
-
-
-
-
 
 #define LABEL_TIMEOUT 2000
 #define STARTUP_TIMEOUT 10000
@@ -104,10 +151,10 @@ bool show_label = false;
 void keyboard_post_init_user(void) {
   // Start startup timer
   startup_timer = timer_read();
-  set_single_persistent_default_layer(0);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  set_single_persistent_default_layer(0);
   // Convert key row, column and whether pressed into an array
   key_pressed = record->event.pressed;
   key_pos = record->event.key.col;
@@ -182,6 +229,7 @@ bool oled_task_user(void) {
   } else {
     render_status();
   }
+  
   return false;
 }
 

@@ -19,20 +19,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "config_common.h"
 
-
 #define MATRIX_ROWS 4
 #define MATRIX_COLS 3
 
 #define MATRIX_ROW_PINS { D3, D4, D5, F4 }
 #define MATRIX_COL_PINS { F1, F0, D6 }
-#define UNUSED_PINS
 
 #define ENCODERS_PAD_A { B4 }
 #define ENCODERS_PAD_B { B5 }
+#define ENCODER_RESOLUTION 4
+#define TAP_CODE_DELAY 10
 
 #define DIODE_DIRECTION COL2ROW
-
-#define QMK_KEYS_PER_SCAN 4
 
 #define DEBOUNCE 5
 
@@ -40,10 +38,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define FORCE_NKRO
 #endif
 
+#ifdef RGB_MATRIX_ENABLE
+  #define DRIVER_LED_TOTAL 9
+  #define RGB_DI_PIN D2
 
-// https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects
-#define ENABLE_RGB_MATRIX_TYPING_HEATMAP
-#define ENABLE_RGB_MATRIX_DIGITAL_RAIN
+  #ifdef RGB_DI_PIN
+    #define RGBLED_NUM 9
+  #endif
+#endif
 
-#define OLED_TIMEOUT 10000
-#define OLED_FONT_H "keyboards/thok/bloq/glcdfont.c"
+#ifdef OLED_ENABLE
+  #define OLED_TIMEOUT 10000
+  #define OLED_FONT_H "keyboards/thok/bloq/glcdfont.c"
+#endif

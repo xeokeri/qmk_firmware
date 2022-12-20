@@ -108,9 +108,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [THOK_LAYER_1] = LAYOUT(
                             TO(THOK_LAYER_2),
-        XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX
+        RGB_RMOD, RGB_HUD, RGB_VAD,
+        RGB_MOD,  RGB_HUI, RGB_VAI,
+        RGB_TOG,  RGB_SAD,  RGB_SAI
     ),
     [THOK_LAYER_2] = LAYOUT(
                             TO(THOK_LAYER_3),

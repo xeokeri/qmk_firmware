@@ -38,7 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define FORCE_NKRO
 #endif
 
-#ifdef RGB_MATRIX_ENABLE
+#ifdef RGBLIGHT_ENABLE
   #define DRIVER_LED_TOTAL 9
   #define RGB_DI_PIN D2
 

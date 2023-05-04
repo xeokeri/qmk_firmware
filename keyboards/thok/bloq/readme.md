@@ -1,8 +1,8 @@
-# THOK Bloq (ANSI) Layout
+# THOK Bloq
 
 ### Make example for this keyboard (after setting up your build environment):
 ```
-make thok/bloq/ansi:default
+make thok/bloq:default
 ```
 _or_
 ```
@@ -11,7 +11,7 @@ qmk compile -kb thok/bloq -km default
 
 ### Flashing example for this keyboard:
 ```
-make thok/bloq/ansi:default:flash
+make thok/bloq:default:flash
 ```
 _or_
 ```

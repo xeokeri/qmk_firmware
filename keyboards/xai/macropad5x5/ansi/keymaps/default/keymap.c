@@ -16,11 +16,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-enum my_keycodes {
-    KC_MCON = SAFE_RANGE, // KC_MISSION_CONTROL
-    KC_LPAD // KC_LAUNCH_PAD
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         _______, _______, KC_MPLY, _______, KC_MUTE,
@@ -43,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_MCON:
+        case KC_MCTL:
             if (record->event.pressed) {
                 host_consumer_send(0x29F);
             } else {

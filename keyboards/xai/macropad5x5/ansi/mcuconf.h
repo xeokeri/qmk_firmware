@@ -18,6 +18,6 @@
 
 #include_next <mcuconf.h>
 
-#undef STM32_SPI_USE_SPI1
-#define STM32_SPI_USE_SPI1 TRUE
-
+// Enabled, for the SK6812MINI LED chain.
+#undef STM32_PWM_USE_TIM20
+#define STM32_PWM_USE_TIM20 TRUE

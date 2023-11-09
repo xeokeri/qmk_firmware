@@ -17,7 +17,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT(
+    /*
+     * ┌───┬───┬───┬───┬───┐
+     * │ o │ o │ o │ o │ o │
+     * ├───┼───┼───┼───┼───┤
+     * │ + │ + │ + │ + │ + │
+     * ├───┼───┼───┼───┼───┤
+     * │ + │ + │ + │ + │ + │
+     * ├───┼───┼───┼───┼───┤
+     * │ + │ + │ + │ + │ + │
+     * ├───┼───┼───┼───┼───┤
+     * │ + │ + │ + │ + │ + │
+     * ├───┼───┼───┼───┼───┤
+     * │ + │ + │ + │ + │ + │
+     * └───┴───┴───┴───┴───┘
+     */
+    [0] = LAYOUT_5x5(
         _______, _______, KC_MPLY, _______, KC_MUTE,
         _______, _______, _______, _______, MO(1),
         KC_7,    KC_8,    KC_9,    _______, KC_PGUP,
@@ -25,8 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_1,    KC_2,    KC_3,    _______, KC_HOME,
         KC_0,    KC_0,    KC_DOT,  _______, KC_END
     ),
-
-    [1] = LAYOUT(
+    [1] = LAYOUT_5x5(
         _______, _______, _______, _______, _______,
         RGB_TOG, _______, _______, _______, _______,
         _______, RGB_HUI, RGB_SAI, RGB_VAI, _______,

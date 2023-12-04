@@ -23,3 +23,6 @@
     #define RGB_DISABLE_WHEN_USB_SUSPENDED
     #define RGB_DISABLE_TIMEOUT 120000 // 2 minutes (2 * 60 * 1000ms)
 #endif
+
+#define ENCODER_MAP_KEY_DELAY 10
+#define ENCODER_RESOLUTION 1
